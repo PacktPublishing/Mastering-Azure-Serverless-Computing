@@ -15,7 +15,7 @@ namespace FunctionAppSettings
     public static class Function1
     {
         [FunctionName("GetConfigValue")]
-        public static async Task<IActionResult> Run(
+        public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log,
             ExecutionContext context)
@@ -30,7 +30,6 @@ namespace FunctionAppSettings
             var configValue = context.GetConfig(key);
 
             return new OkObjectResult(new { key, value = configValue });
-
         }
 
     }
