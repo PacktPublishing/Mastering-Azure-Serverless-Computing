@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyCalculatorFunctions", "MoneyCalculatorFunctions\MoneyCalculatorFunctions.csproj", "{B989F2BE-26C6-4BAF-9008-458F95899FAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyCalculatorFunctions.Test", "MoneyCalculatorFunctions.Test\MoneyCalculatorFunctions.Test.csproj", "{692ABAEA-F651-4AEA-A74D-275AF5B8323F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B989F2BE-26C6-4BAF-9008-458F95899FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B989F2BE-26C6-4BAF-9008-458F95899FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B989F2BE-26C6-4BAF-9008-458F95899FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B989F2BE-26C6-4BAF-9008-458F95899FAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692ABAEA-F651-4AEA-A74D-275AF5B8323F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692ABAEA-F651-4AEA-A74D-275AF5B8323F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692ABAEA-F651-4AEA-A74D-275AF5B8323F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692ABAEA-F651-4AEA-A74D-275AF5B8323F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E323C1F-319D-4DB9-9136-4AC5E9FA0937}
+	EndGlobalSection
+EndGlobal

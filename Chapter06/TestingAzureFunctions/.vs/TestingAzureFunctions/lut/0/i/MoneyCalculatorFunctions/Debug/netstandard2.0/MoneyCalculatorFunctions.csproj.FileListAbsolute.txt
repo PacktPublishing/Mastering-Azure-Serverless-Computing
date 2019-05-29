@@ -1,0 +1,10 @@
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\b\MoneyCalculatorFunctions\Debug\netstandard2.0\host.json
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\b\MoneyCalculatorFunctions\Debug\netstandard2.0\local.settings.json
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\b\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.deps.json
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\b\MoneyCalculatorFunctions\Debug\netstandard2.0\bin\MoneyCalculatorFunctions.dll
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.csproj.CoreCompileInputs.cache
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.AssemblyInfoInputs.cache
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.AssemblyInfo.cs
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.csproj.CopyComplete
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.dll
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions\Debug\netstandard2.0\MoneyCalculatorFunctions.csprojAssemblyReference.cache
