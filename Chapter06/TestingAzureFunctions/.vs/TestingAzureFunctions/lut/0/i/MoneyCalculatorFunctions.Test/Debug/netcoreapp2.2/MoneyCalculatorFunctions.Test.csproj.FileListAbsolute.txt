@@ -12,4 +12,3 @@ C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions
 C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions.Test\Debug\netcoreapp2.2\MoneyCalculatorFunctions.Test.AssemblyInfo.cs
 C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions.Test\Debug\netcoreapp2.2\MoneyCalculatorFunctions.Test.csproj.CopyComplete
 C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions.Test\Debug\netcoreapp2.2\MoneyCalculatorFunctions.Test.dll
-C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter06\TestingAzureFunctions\.vs\TestingAzureFunctions\lut\0\i\MoneyCalculatorFunctions.Test\Debug\netcoreapp2.2\MoneyCalculatorFunctions.Test.csprojAssemblyReference.cache

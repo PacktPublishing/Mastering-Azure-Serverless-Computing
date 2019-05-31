@@ -30,7 +30,6 @@ namespace MoneyCalculatorFunctions
             builder.Services.AddTransient<IMortgageCalculator, MortgageCalculator>();
         }
     }
-
 }
 #endif
 

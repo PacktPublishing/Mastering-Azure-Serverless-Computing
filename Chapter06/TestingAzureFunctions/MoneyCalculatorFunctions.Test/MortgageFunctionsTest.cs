@@ -59,7 +59,6 @@ namespace MoneyCalculatorFunctions.Test
             table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Once);
         }
 
-
         public static IEnumerable<object[]> WrongCalculationData =>
             new List<object[]>
             {

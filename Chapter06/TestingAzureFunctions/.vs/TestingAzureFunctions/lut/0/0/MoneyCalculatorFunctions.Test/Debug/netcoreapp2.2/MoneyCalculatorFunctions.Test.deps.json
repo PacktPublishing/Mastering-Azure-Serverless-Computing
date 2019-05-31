@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "930547a43d9ae29cbede3d74d8b1b025559b6789"
+    "signature": "4e4dfa29b84ddfb87f1be440e886841bd8a35008"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "MoneyCalculatorFunctions.Test/1.0.0": {
         "dependencies": {
+          "Microsoft.Azure.WebJobs.Extensions.Storage": "3.0.6",
           "Microsoft.NET.Test.Sdk": "16.0.1",
           "MoneyCalculatorFunctions": "1.0.0",
           "Moq": "4.11.0",
@@ -302,7 +303,7 @@
       },
       "Microsoft.Azure.Functions.Extensions/1.0.0": {
         "dependencies": {
-          "Microsoft.Azure.WebJobs": "3.0.5",
+          "Microsoft.Azure.WebJobs": "3.0.8",
           "Microsoft.Extensions.DependencyInjection": "2.2.0"
         },
         "runtime": {
@@ -312,9 +313,9 @@
           }
         }
       },
-      "Microsoft.Azure.WebJobs/3.0.5": {
+      "Microsoft.Azure.WebJobs/3.0.8": {
         "dependencies": {
-          "Microsoft.Azure.WebJobs.Core": "3.0.5",
+          "Microsoft.Azure.WebJobs.Core": "3.0.8",
           "Microsoft.Extensions.Configuration": "2.1.0",
           "Microsoft.Extensions.Configuration.Abstractions": "2.1.0",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.1.0",
@@ -328,26 +329,26 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Azure.WebJobs.Host.dll": {
-            "assemblyVersion": "3.0.5.0",
-            "fileVersion": "3.0.5.0"
+            "assemblyVersion": "3.0.8.0",
+            "fileVersion": "3.0.8.0"
           }
         }
       },
-      "Microsoft.Azure.WebJobs.Core/3.0.5": {
+      "Microsoft.Azure.WebJobs.Core/3.0.8": {
         "dependencies": {
           "System.ComponentModel.Annotations": "4.4.0",
           "System.Diagnostics.TraceSource": "4.3.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Azure.WebJobs.dll": {
-            "assemblyVersion": "3.0.5.0",
-            "fileVersion": "3.0.5.0"
+            "assemblyVersion": "3.0.8.0",
+            "fileVersion": "3.0.8.0"
           }
         }
       },
       "Microsoft.Azure.WebJobs.Extensions/3.0.0": {
         "dependencies": {
-          "Microsoft.Azure.WebJobs": "3.0.5",
+          "Microsoft.Azure.WebJobs": "3.0.8",
           "Microsoft.Azure.WebJobs.Host.Storage": "3.0.0",
           "ncrontab.signed": "3.3.0"
         },
@@ -365,7 +366,7 @@
           "Microsoft.AspNetCore.Mvc.Formatters.Json": "2.1.0",
           "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "2.1.0",
           "Microsoft.AspNetCore.Routing": "2.1.0",
-          "Microsoft.Azure.WebJobs": "3.0.5"
+          "Microsoft.Azure.WebJobs": "3.0.8"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Azure.WebJobs.Extensions.Http.dll": {
@@ -374,9 +375,21 @@
           }
         }
       },
+      "Microsoft.Azure.WebJobs.Extensions.Storage/3.0.6": {
+        "dependencies": {
+          "Microsoft.Azure.WebJobs": "3.0.8",
+          "WindowsAzure.Storage": "9.3.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Azure.WebJobs.Extensions.Storage.dll": {
+            "assemblyVersion": "3.0.6.0",
+            "fileVersion": "3.0.6.0"
+          }
+        }
+      },
       "Microsoft.Azure.WebJobs.Host.Storage/3.0.0": {
         "dependencies": {
-          "Microsoft.Azure.WebJobs": "3.0.5",
+          "Microsoft.Azure.WebJobs": "3.0.8",
           "WindowsAzure.Storage": "9.3.1"
         },
         "runtime": {
@@ -742,7 +755,7 @@
       },
       "Microsoft.NET.Sdk.Functions/1.0.28": {
         "dependencies": {
-          "Microsoft.Azure.WebJobs": "3.0.5",
+          "Microsoft.Azure.WebJobs": "3.0.8",
           "Microsoft.Azure.WebJobs.Extensions": "3.0.0",
           "Microsoft.Azure.WebJobs.Extensions.Http": "3.0.0",
           "Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator": "1.1.1",
@@ -1812,6 +1825,7 @@
       "MoneyCalculatorFunctions/1.0.0": {
         "dependencies": {
           "Microsoft.Azure.Functions.Extensions": "1.0.0",
+          "Microsoft.Azure.WebJobs.Extensions.Storage": "3.0.6",
           "Microsoft.NET.Sdk.Functions": "1.0.28"
         },
         "runtime": {
@@ -1988,19 +2002,19 @@
       "path": "microsoft.azure.functions.extensions/1.0.0",
       "hashPath": "microsoft.azure.functions.extensions.1.0.0.nupkg.sha512"
     },
-    "Microsoft.Azure.WebJobs/3.0.5": {
+    "Microsoft.Azure.WebJobs/3.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IZhgGbJcNeiX58NwRub2Eq1O8dzC5m5qLNRezX8Klasyrs/UiJaUYZ+DIyw5RaZ0X0N0yBDPckcH8bUntvqUwA==",
-      "path": "microsoft.azure.webjobs/3.0.5",
-      "hashPath": "microsoft.azure.webjobs.3.0.5.nupkg.sha512"
+      "sha512": "sha512-N7IScs1rW90+dvnhMHN4Gugw/P4XPC+fLbQmqDALPcMcIeKP8MWLo/AzX6Say69LJ4lh50EkBA+4MGmY2KBk8g==",
+      "path": "microsoft.azure.webjobs/3.0.8",
+      "hashPath": "microsoft.azure.webjobs.3.0.8.nupkg.sha512"
     },
-    "Microsoft.Azure.WebJobs.Core/3.0.5": {
+    "Microsoft.Azure.WebJobs.Core/3.0.8": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IXTO/WHh47KoUzEuNs5zMFfovok6vQNpI3bpUcjIYF3BdcXnUyabSU5SKa4IFwZp+QWYYtoSKo4wzdGHgB891w==",
-      "path": "microsoft.azure.webjobs.core/3.0.5",
-      "hashPath": "microsoft.azure.webjobs.core.3.0.5.nupkg.sha512"
+      "sha512": "sha512-MpbpZjSBr11nIpHRtJglDqem4Wt98/7NRCXh7KaxgVEUVvYfsyWu91W+cKXsgTclzpn3/kObokB2tLHGE95iSw==",
+      "path": "microsoft.azure.webjobs.core/3.0.8",
+      "hashPath": "microsoft.azure.webjobs.core.3.0.8.nupkg.sha512"
     },
     "Microsoft.Azure.WebJobs.Extensions/3.0.0": {
       "type": "package",
@@ -2015,6 +2029,13 @@
       "sha512": "sha512-FJ2THcZPOkNIhITUmpo5t2GvQZwjx6Omw8erGj/1eEaaOZjBulTnC/s5VihmOElM6eccI2ddewE/a31VEmfAAA==",
       "path": "microsoft.azure.webjobs.extensions.http/3.0.0",
       "hashPath": "microsoft.azure.webjobs.extensions.http.3.0.0.nupkg.sha512"
+    },
+    "Microsoft.Azure.WebJobs.Extensions.Storage/3.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pM5gn83Hhay9kOaq36cDWldvnmMkBxK3++c8g3IUPNXmptRpZELLkJhgDD/BjUCJKBPwZYlB0TCFs7RncaHKCw==",
+      "path": "microsoft.azure.webjobs.extensions.storage/3.0.6",
+      "hashPath": "microsoft.azure.webjobs.extensions.storage.3.0.6.nupkg.sha512"
     },
     "Microsoft.Azure.WebJobs.Host.Storage/3.0.0": {
       "type": "package",

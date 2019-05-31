@@ -37,6 +37,7 @@ namespace MoneyCalculatorFunctions
             string queryLoan = req.Query["loan"];
             if (queryLoan == null || !decimal.TryParse(queryLoan, out loan))
             {
+                log.LogError($"Loan not valid");
                 return new BadRequestObjectResult("Loan not valid");
             }
 
@@ -44,6 +45,7 @@ namespace MoneyCalculatorFunctions
             string queryInterest = req.Query["interest"];
             if (queryInterest == null || !double.TryParse(queryInterest, out interest))
             {
+                log.LogError($"Annual Interest not valid");
                 return new BadRequestObjectResult("Annual Interest not valid");
             }
 
@@ -51,6 +53,7 @@ namespace MoneyCalculatorFunctions
             string querynPayments = req.Query["nPayments"];
             if (querynPayments == null || !uint.TryParse(querynPayments, out nPayments))
             {
+                log.LogError($"Number of payments not valid");
                 return new BadRequestObjectResult("Number of payments not valid");
             }
 
