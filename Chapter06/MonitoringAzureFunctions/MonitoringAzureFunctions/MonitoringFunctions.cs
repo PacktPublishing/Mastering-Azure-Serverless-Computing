@@ -20,7 +20,22 @@ namespace MonitoringAzureFunctions
             log.LogTrace($"Schedule Status Last: {myTimer.ScheduleStatus.Last}");
             log.LogTrace($"Schedule Status Next: {myTimer.ScheduleStatus.Next}");
             log.LogTrace($"Schedule Status LastUpdated: {myTimer.ScheduleStatus.LastUpdated}");
+            if (IsErrorOccurs())
+                log.LogWarning($"Something happened in your function!!!");
 
+            log.LogMetric("MyCustomMetric", CalculateMyCustomMetric());
+        }
+
+        private static readonly Random rand = new Random(DateTime.Now.Millisecond);
+
+        private static double CalculateMyCustomMetric()
+        {
+            return rand.NextDouble();
+        }
+
+        private static bool IsErrorOccurs()
+        {
+            return rand.Next(0, 100) < 20;
         }
     }
 }

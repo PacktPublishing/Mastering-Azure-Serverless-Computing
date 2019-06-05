@@ -3,11 +3,8 @@
   "logging": {
     "fileLoggingMode": "always",
     "logLevel": {
-      "default": "Information",
-      "Host.Results": "Error",
-      "Function": "Trace",
-      "Host.Aggregator": "Trace",
-      "Microsoft.AspNetCore.Mvc.StatusCodeResult": "Error"
+      "Default": "Information",
+      "Function": "Warning"
     }
   }
 }
