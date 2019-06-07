@@ -1,0 +1,9 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "StorageAccount": "UseDevelopmentStorage=true",
+    "SendGridApiKey": "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"
+  }
+}
