@@ -23,7 +23,7 @@ namespace OrderManager.Functions.Activities
             ILogger log)
         {
             log.LogInformation($"[START ACTIVITY] --> {FunctionNames.GenerateInvoiceFunction} for order: {order}");
-            var fileName = $"{SourceNames.InvoicesContainer}/{order.Id}.txt";
+            var fileName = order.GetInvoicePath(SourceNames.InvoicesContainer);
             using (var outputBlob = outputBinder.Bind<TextWriter>(new BlobAttribute(fileName)))
             {
                 outputBlob.WriteLine($"Invoice generated on {DateTime.Now} for the order {order.Id} of {order.CreationTimestamp}");
