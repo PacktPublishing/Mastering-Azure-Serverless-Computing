@@ -18,7 +18,7 @@ namespace OrderManager.Functions.Activities
     {
         [FunctionName(FunctionNames.AddOrderFunction)]
         public static async Task<bool> Run([ActivityTrigger] Order order,
-            [Table(TableNames.OrdersTable, Connection = "StorageAccount")] CloudTable giftTable,
+            [Table(SourceNames.OrdersTable, Connection = "StorageAccount")] CloudTable giftTable,
             ILogger log)
         {
             log.LogInformation($"[START ACTIVITY] --> {FunctionNames.AddOrderFunction} for {order}");

@@ -38,11 +38,15 @@ namespace OrderManager.Functions.Orchetsrators
                 if (taskCompleted == orderCancelledEvent && taskCompleted== cancelTimer)
                 {
                     log.LogWarning($"Order Cancelled : {order}");
-                    // Order cancelled
+                    // finalize order false
+                    // send mail
                 }
                 else if (taskCompleted == orderPaidEvent)
                 {
                     log.LogTrace($"Order Paid : {order}");
+                    // Finalize order true
+                    // Generate invoice
+                    // send mail
                 }
 
 
