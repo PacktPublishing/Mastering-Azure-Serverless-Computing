@@ -1,0 +1,9 @@
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\bin\Debug\netcoreapp2.1\OrderManager.Core.deps.json
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\bin\Debug\netcoreapp2.1\OrderManager.Core.dll
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\bin\Debug\netcoreapp2.1\OrderManager.Core.pdb
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.csprojAssemblyReference.cache
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.csproj.CoreCompileInputs.cache
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.AssemblyInfoInputs.cache
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.AssemblyInfo.cs
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.dll
+C:\Sviluppo\Mastering-Azure-Serverless-Computing\Chapter07\OrderManager\OrderManager.Core\obj\Debug\netcoreapp2.1\OrderManager.Core.pdb
