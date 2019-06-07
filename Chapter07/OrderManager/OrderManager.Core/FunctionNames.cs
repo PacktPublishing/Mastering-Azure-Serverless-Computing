@@ -8,5 +8,7 @@
         public const string FinalizeOrderFunction = "FinalizeOrder";
         public const string GenerateInvoiceFunction = "GenerateInvoice";
         public const string SendMailFunction = "SendMail";
+        public const string OrderConfirmedFunction = "OrderConfirmed";
+        public const string OrderCancelledFunction = "OrderCancelled";
     }
 }
