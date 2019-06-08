@@ -32,21 +32,32 @@ namespace OrderManager.Functions.Orchetsrators
 
                 var orderPaidEvent = context.WaitForExternalEvent(Events.OrderPaid);
                 var orderCancelledEvent = context.WaitForExternalEvent(Events.OrderCancelled);
-                var cancelTimer= context.CreateTimer(orderDeadline,CancellationToken.None);
+                var cancelTimer = context.CreateTimer(orderDeadline, CancellationToken.None);
 
                 var taskCompleted = await Task.WhenAny(orderPaidEvent, orderCancelledEvent, cancelTimer);
-                if (taskCompleted == orderCancelledEvent || taskCompleted== cancelTimer)
+                if (taskCompleted == orderCancelledEvent || taskCompleted == cancelTimer)
                 {
                     log.LogWarning($"Order Cancelled : {order}");
-                    // finalize order false
-                    // send mail
+                    order = await context.CallActivityAsync<Order>(FunctionNames.FinalizeOrderFunction,
+                        new OrderStateChange()
+                        {
+                            NewOrderState = OrderStatus.Cancelled,
+                            OrderId = order.Id
+                        });
+                    var sendMailResult = await context.CallActivityAsync<bool>(FunctionNames.SendMailFunction, order);
+
                 }
                 else if (taskCompleted == orderPaidEvent)
                 {
                     log.LogTrace($"Order Paid : {order}");
-                    // Finalize order true
-                    // Generate invoice
-                    // send mail
+                    order = await context.CallActivityAsync<Order>(FunctionNames.FinalizeOrderFunction,
+                        new OrderStateChange()
+                        {
+                            NewOrderState = OrderStatus.Paid,
+                            OrderId = order.Id
+                        });
+                    var fileName = await context.CallActivityAsync<string>(FunctionNames.GenerateInvoiceFunction, order);
+                    var sendMailResult = await context.CallActivityAsync<bool>(FunctionNames.SendMailFunction, order);
                 }
 
 
