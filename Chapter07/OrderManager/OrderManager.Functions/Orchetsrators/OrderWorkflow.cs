@@ -28,14 +28,14 @@ namespace OrderManager.Functions.Orchetsrators
 
             if (addResult)
             {
-                DateTime orderDeadline = context.CurrentUtcDateTime.AddMinutes(10);
+                DateTime orderDeadline = context.CurrentUtcDateTime.AddMinutes(1);
 
-                var orderPaidEvent = context.WaitForExternalEvent<bool>(Events.OrderPaid);
-                var orderCancelledEvent = context.WaitForExternalEvent<bool>(Events.OrderCancelled);
-                var cancelTimer= context.CreateTimer(orderDeadline,default(CancellationToken));
+                var orderPaidEvent = context.WaitForExternalEvent(Events.OrderPaid);
+                var orderCancelledEvent = context.WaitForExternalEvent(Events.OrderCancelled);
+                var cancelTimer= context.CreateTimer(orderDeadline,CancellationToken.None);
 
                 var taskCompleted = await Task.WhenAny(orderPaidEvent, orderCancelledEvent, cancelTimer);
-                if (taskCompleted == orderCancelledEvent && taskCompleted== cancelTimer)
+                if (taskCompleted == orderCancelledEvent || taskCompleted== cancelTimer)
                 {
                     log.LogWarning($"Order Cancelled : {order}");
                     // finalize order false
