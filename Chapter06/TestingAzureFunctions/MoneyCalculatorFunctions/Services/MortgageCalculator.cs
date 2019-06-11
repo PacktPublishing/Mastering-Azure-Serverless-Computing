@@ -13,7 +13,7 @@ namespace MoneyCalculatorFunctions.Services
         {
             if (factory != null)
             {
-                this.log = factory.CreateLogger<MortgageCalculator>();
+                this.log = factory.CreateLogger(nameof(MortgageCalculator));
             }
         }
 

@@ -19,9 +19,14 @@ namespace MoneyCalculatorFunctions.Test.Services
             double annualInterest = 0;
             uint numberOfPayments = 10;
 
+            var logFactoryMock = new Mock<ILoggerFactory>();
             var logMock = new Mock<ILogger>();
 
-            var target = new MortgageCalculator(logMock.Object);
+            logFactoryMock
+                .Setup(e => e.CreateLogger(nameof(MortgageCalculator)))
+                .Returns(logMock.Object);
+
+            var target = new MortgageCalculator(logFactoryMock.Object);
 
             var actual = await target.CalculateMontlyRateAsync(mortgageLoan, annualInterest, numberOfPayments);
 
@@ -37,9 +42,14 @@ namespace MoneyCalculatorFunctions.Test.Services
             double annualInterest = -10;
             uint numberOfPayments = 10;
 
+            var logFactoryMock = new Mock<ILoggerFactory>();
             var logMock = new Mock<ILogger>();
 
-            var target = new MortgageCalculator(logMock.Object);
+            logFactoryMock
+                .Setup(e => e.CreateLogger(nameof(MortgageCalculator)))
+                .Returns(logMock.Object);
+
+            var target = new MortgageCalculator(logFactoryMock.Object);
 
             var actual = await target.CalculateMontlyRateAsync(mortgageLoan, annualInterest, numberOfPayments);
 
@@ -59,12 +69,17 @@ namespace MoneyCalculatorFunctions.Test.Services
 
         [Theory]
         [MemberData(nameof(CalculationData))]
-        public async Task CalculateMontlyRateAsync_ParametersOk_Calculate(decimal mortgageLoan, 
+        public async Task CalculateMontlyRateAsync_ParametersOk_Calculate(decimal mortgageLoan,
             double annualInterest, uint numberOfPayments, decimal rate)
         {
+            var logFactoryMock = new Mock<ILoggerFactory>();
             var logMock = new Mock<ILogger>();
 
-            var target = new MortgageCalculator(logMock.Object);
+            logFactoryMock
+                .Setup(e => e.CreateLogger(nameof(MortgageCalculator)))
+                .Returns(logMock.Object);
+
+            var target = new MortgageCalculator(logFactoryMock.Object);
 
             var actual = await target.CalculateMontlyRateAsync(mortgageLoan, annualInterest, numberOfPayments);
 

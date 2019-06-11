@@ -11,22 +11,15 @@ using MoneyCalculatorFunctions.Entities;
 using MoneyCalculatorFunctions.Services;
 using Newtonsoft.Json;
 
-namespace MoneyCalculatorFunctions
+namespace MoneyCalculatorFunctions.Static
 {
-    public class MortgageFunctions
+    public static class MortgageFunctions
     {
-        private readonly IMortgageCalculator mortgageCalculator;
+        private static readonly IMortgageCalculator mortgageCalculator = 
+            new MortgageCalculator(null);
 
-        public MortgageFunctions(IMortgageCalculator mortgageCalculator)
-        {
-            if (mortgageCalculator == null)
-                throw new ArgumentNullException(nameof(mortgageCalculator));
-
-            this.mortgageCalculator = mortgageCalculator;
-        }
-
-        [FunctionName(FunctionNames.MortgageCalculatorFunction)]
-        public async Task<IActionResult> Run(
+        [FunctionName(FunctionNames.MortgageCalculatorFunction+"STATIC")]
+        public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             [Table("executionsTable", Connection = "StorageAccount")] ICollector<ExecutionRow> outputTable,
             ILogger log)
@@ -58,7 +51,7 @@ namespace MoneyCalculatorFunctions
                 return new BadRequestObjectResult("Number of payments not valid");
             }
 
-            var calculatorResult = await this.mortgageCalculator.CalculateMontlyRateAsync(loan, interest, nPayments);
+            var calculatorResult = await mortgageCalculator.CalculateMontlyRateAsync(loan, interest, nPayments);
 
             var executionRow = new ExecutionRow(DateTime.Now)
             {
