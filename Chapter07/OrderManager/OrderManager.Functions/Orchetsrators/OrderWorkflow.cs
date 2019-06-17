@@ -44,8 +44,6 @@ namespace OrderManager.Functions.Orchetsrators
                             NewOrderState = OrderStatus.Cancelled,
                             OrderId = order.Id
                         });
-                    var sendMailResult = await context.CallActivityAsync<bool>(FunctionNames.SendMailFunction, order);
-
                 }
                 else if (taskCompleted == orderPaidEvent)
                 {
@@ -56,8 +54,13 @@ namespace OrderManager.Functions.Orchetsrators
                             NewOrderState = OrderStatus.Paid,
                             OrderId = order.Id
                         });
-                    var fileName = await context.CallActivityAsync<string>(FunctionNames.GenerateInvoiceFunction, order);
+                    await context.CallActivityAsync<string>(FunctionNames.GenerateInvoiceFunction, order);
+                }
+
+                if (order != null)
+                {
                     var sendMailResult = await context.CallActivityAsync<bool>(FunctionNames.SendMailFunction, order);
+                    log.LogTrace($"Sendmail result : {sendMailResult}");
                 }
 
 

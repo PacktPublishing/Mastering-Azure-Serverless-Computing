@@ -22,11 +22,8 @@ namespace OrderManager.Functions
             [OrchestrationClient] DurableOrchestrationClient starter,
             ILogger log)
         {
-            var jsonContent = await req.Content.ReadAsStringAsync();
             string instanceId = null;
-            OrderDto orderDto = null;
-
-            orderDto = JsonConvert.DeserializeObject<OrderDto>(jsonContent);
+            var orderDto = await ReadOrderFromRequestAsync(req);
             if (orderDto != null && orderDto.IsValid())
             {
                 var order = orderDto.ToOrder();
@@ -38,8 +35,14 @@ namespace OrderManager.Functions
                 log.LogError($"Order not valid - {orderDto}");
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest) { ReasonPhrase = "Order not valid" };
             }
-
             return starter.CreateCheckStatusResponse(req, instanceId);
+        }
+
+        private static async Task<OrderDto> ReadOrderFromRequestAsync(HttpRequestMessage req)
+        {
+            var jsonContent = await req.Content.ReadAsStringAsync();
+            var orderDto = JsonConvert.DeserializeObject<OrderDto>(jsonContent);
+            return orderDto;
         }
     }
 }

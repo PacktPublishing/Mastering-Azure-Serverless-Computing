@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace OrderManager.Core.Entities
 {
-    public class Order:TableEntity
+    public class Order : TableEntity
     {
         public Order()
         {
 
         }
 
-        public Order(string customer,string orderId) : base(customer, orderId)
+        public Order(string customer, string orderId) : base(customer, orderId)
         {
-            this.Id=orderId;
+            this.Id = orderId;
+
         }
 
         public string Id { get; set; }
@@ -27,6 +30,25 @@ namespace OrderManager.Core.Entities
         public override string ToString()
         {
             return $"{nameof(Id)}={Id}, {nameof(Customer)}={Customer}, {nameof(CustomerMail)}={CustomerMail}, {nameof(Id)}={Id}, {nameof(Amount)}={Amount},  {nameof(CreationTimestamp)}={CreationTimestamp},  {nameof(State)}={State}";
+        }
+
+        public override IDictionary<string, EntityProperty> WriteEntity(OperationContext operationContext)
+        {
+            var results = base.WriteEntity(operationContext);
+            var stateProperty = new EntityProperty(this.State.ToString());
+            results.Add(nameof(State), stateProperty);
+            return results;
+        }
+
+        public override void ReadEntity(IDictionary<string, EntityProperty> properties, OperationContext operationContext)
+        {
+            base.ReadEntity(properties, operationContext);
+            if (properties.ContainsKey(nameof(State)))
+            {
+                var property = properties[nameof(State)];
+                this.State = (OrderStatus)Enum.Parse(typeof(OrderStatus), property.StringValue);
+                properties.Remove(nameof(State));
+            }
         }
     }
 }
