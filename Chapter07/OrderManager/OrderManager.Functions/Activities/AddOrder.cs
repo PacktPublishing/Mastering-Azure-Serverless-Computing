@@ -17,11 +17,10 @@ namespace OrderManager.Functions.Activities
     public static class AddOrder
     {
         [FunctionName(FunctionNames.AddOrderFunction)]
-        public static async Task<bool> Run([ActivityTrigger] DurableActivityContext activityContext,
+        public static async Task<bool> Run([ActivityTrigger] Order order,
             [Table(SourceNames.OrdersTable, Connection = "StorageAccount")] CloudTable giftTable,
             ILogger log)
         {
-            var order = activityContext.GetInput<Order>();
             log.LogInformation($"[START ACTIVITY] --> {FunctionNames.AddOrderFunction} for {order}");
             bool retVal = false;
             try
