@@ -35,9 +35,15 @@ namespace MoneyCalculatorFunctions.Test
             var provider = CultureInfo.InvariantCulture;
 
             var request = new Mock<HttpRequest>();
-            request.Setup(e => e.Query[MortgageFunctions.LoanQueryKey]).Returns(mortgageLoan.ToString(provider));
-            request.Setup(e => e.Query[MortgageFunctions.InterestQueryKey]).Returns(annualInterest.ToString(provider));
-            request.Setup(e => e.Query[MortgageFunctions.NumberOfPaymentsQueryKey]).Returns(numberOfPayments.ToString(provider));
+            request
+                .Setup(e => e.Query[MortgageFunctions.LoanQueryKey])
+                .Returns(mortgageLoan.ToString(provider));
+            request
+                .Setup(e => e.Query[MortgageFunctions.InterestQueryKey])
+                .Returns(annualInterest.ToString(provider));
+            request
+                .Setup(e => e.Query[MortgageFunctions.NumberOfPaymentsQueryKey])
+                .Returns(numberOfPayments.ToString(provider));
 
             var mortgageCalculator = new Mock<IMortgageCalculator>();
             mortgageCalculator
@@ -81,7 +87,7 @@ namespace MoneyCalculatorFunctions.Test
 
         [Theory]
         [MemberData(nameof(WrongCalculationData))]
-        public async Task Run_WrongParametersInQueryString_Calculate(string mortgageLoan,
+        public async Task Run_WrongParametersInQueryString_Error(string mortgageLoan,
             string annualInterest, string numberOfPayments)
         {
             #region ARRANGE
