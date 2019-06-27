@@ -35,9 +35,9 @@ namespace MoneyCalculatorFunctions.Test
             var provider = CultureInfo.InvariantCulture;
 
             var request = new Mock<HttpRequest>();
-            request.Setup(e => e.Query["loan"]).Returns(mortgageLoan.ToString(provider));
-            request.Setup(e => e.Query["interest"]).Returns(annualInterest.ToString(provider));
-            request.Setup(e => e.Query["nPayments"]).Returns(numberOfPayments.ToString(provider));
+            request.Setup(e => e.Query[MortgageFunctions.LoanQueryKey]).Returns(mortgageLoan.ToString(provider));
+            request.Setup(e => e.Query[MortgageFunctions.InterestQueryKey]).Returns(annualInterest.ToString(provider));
+            request.Setup(e => e.Query[MortgageFunctions.NumberOfPaymentsQueryKey]).Returns(numberOfPayments.ToString(provider));
 
             var mortgageCalculator = new Mock<IMortgageCalculator>();
             mortgageCalculator
@@ -61,7 +61,7 @@ namespace MoneyCalculatorFunctions.Test
             Assert.IsType<OkObjectResult>(actual);
             var objResponse = actual as OkObjectResult;
             Assert.Equal(objResponse.Value, rate);
-            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Once); 
+            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Once);
             #endregion ASSERT
         }
 
@@ -88,9 +88,12 @@ namespace MoneyCalculatorFunctions.Test
             var provider = CultureInfo.InvariantCulture;
 
             var request = new Mock<HttpRequest>();
-            request.Setup(e => e.Query["loan"]).Returns(mortgageLoan);
-            request.Setup(e => e.Query["interest"]).Returns(annualInterest);
-            request.Setup(e => e.Query["nPayments"]).Returns(numberOfPayments);
+            if (mortgageLoan != null)
+                request.Setup(e => e.Query[MortgageFunctions.LoanQueryKey]).Returns(mortgageLoan);
+            if (annualInterest != null)
+                request.Setup(e => e.Query[MortgageFunctions.InterestQueryKey]).Returns(annualInterest);
+            if (numberOfPayments != null)
+                request.Setup(e => e.Query[MortgageFunctions.NumberOfPaymentsQueryKey]).Returns(numberOfPayments);
 
             var mortgageCalculator = new Mock<IMortgageCalculator>();
             mortgageCalculator
@@ -109,9 +112,9 @@ namespace MoneyCalculatorFunctions.Test
 
             #region ASSERT
             Assert.IsType<BadRequestObjectResult>(actual);
-            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Never); 
+            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Never);
             #endregion ASSERT
-        } 
+        }
 
 
         #endregion [ Run ]
