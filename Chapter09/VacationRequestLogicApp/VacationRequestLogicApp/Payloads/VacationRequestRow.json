@@ -1,0 +1,7 @@
+﻿{
+  "PartitionKey": "111111",
+  "EmployeeId": "111111",
+  "RowKey": "2019-06-06",
+  "RequestDate": "2019-06-06",
+  "VacationType": "Illness"
+}
