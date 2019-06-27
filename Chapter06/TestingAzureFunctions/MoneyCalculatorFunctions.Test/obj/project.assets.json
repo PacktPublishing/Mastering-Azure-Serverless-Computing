@@ -2611,7 +2611,7 @@
       ]
     },
     "Microsoft.AspNet.WebApi.Client/5.2.4": {
-      "sha512": "OdBVC2bQWkf9qDd7Mt07ev4SwIdu6VmLBMTWC0D5cOP/HWSXyv/77otwtXVrAo42duNjvXOjzjP5oOI9m1+DTQ==",
+      "sha512": "3ZUyFJevFGCOiBAv4zf41bADtofQ+waCuUIMregNdDpVFtH0BQxmMPdBDDuoLCEClxsXjxnel9USHBlnrRpthA==",
       "type": "package",
       "path": "microsoft.aspnet.webapi.client/5.2.4",
       "files": [
@@ -3006,7 +3006,7 @@
       ]
     },
     "Microsoft.Build.Framework/15.3.409": {
-      "sha512": "+H11umzkkq46gMtgzmQ1JAVHEmZKmtMiPvi4YZiRPtmaGJC9xv8czMs8lHAL/W/wEnsv7SxD0UFNtNSdbpyvFA==",
+      "sha512": "Kz+8UmEWbHAFzgYEp2OTlSUTkoRm+sXdDGl3PXKkEwLaW2OztycNCQurzUTG9sBSZLNIKatmh+yRcp/ZRdJY+w==",
       "type": "package",
       "path": "microsoft.build.framework/15.3.409",
       "files": [
@@ -3021,7 +3021,7 @@
       ]
     },
     "Microsoft.Build.Utilities.Core/15.3.409": {
-      "sha512": "UVntU9ObJxbrPoycTTtt6cZHiSRTowXRMvjNLGzFECRU81p0NCEvguVt3A7tQEF2mOTvyUh/T21oaNhaWKtndQ==",
+      "sha512": "7XbE8MxnWOURXcnE/IJ0g0zDQJkBQI9xuwPmN5IaP7WirAa87TEwzWiOlened5cgHBj1hHQMxJFyRQIqXcemaw==",
       "type": "package",
       "path": "microsoft.build.utilities.core/15.3.409",
       "files": [
@@ -3827,11 +3827,12 @@
       ]
     },
     "Microsoft.NETCore.Targets/2.0.0": {
-      "sha512": "odP/tJj1z6GylFpNo7pMtbd/xQgTC3Ex2If63dRTL38bBNMwsBnJ+RceUIyHdRBC0oik/3NehYT+oECwBhIM3Q==",
+      "sha512": "rJJD/NPatfDry7SuNM7YvjqbJD9u1fs8h0hGI0nft0lnCFfEtPuX5N29Akja0ATbjQxzWn4P0s5gUSeOxEqROQ==",
       "type": "package",
       "path": "microsoft.netcore.targets/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
@@ -4287,12 +4288,11 @@
       ]
     },
     "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "sha512": "hgdL6oox5XgHy3lPRlHr5Z5zdFVgY9Qhk7w7XwNqZVOU8n7qwm5hh/tyjbQm4vr/g4omYPLaw48GVdtILFkJpQ==",
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -4332,7 +4332,7 @@
       ]
     },
     "runtime.native.System/4.3.0": {
-      "sha512": "c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
+      "sha512": "YKFbN4LPqpgBHy/pmvzFyyeEabMzTSDSg+xuXNJdQkgV/xr+a2MUdQkhRBX9v9qO5uX3Hx4bFod0JFXs74EJXQ==",
       "type": "package",
       "path": "runtime.native.system/4.3.0",
       "files": [
@@ -4579,7 +4579,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
+      "sha512": "6SQ4Ub755oK+UUsR2ophDrEOCnY+/tpzgADLNjGOR0X0Kh0UXNTBBRU+nawx9Z+vdztlo8NCD5AnGaL7ERE9Cw==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -4617,7 +4617,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "JG+iBl8EnMzdVDmBltrY+3WpnPvkG3hHmzSVG+xZWiS53GxZJ4IUk5rkxEeBwBdZCK6GmEMM3Rp3c+e6rV8vnw==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -5455,7 +5455,7 @@
       ]
     },
     "System.Globalization.Extensions/4.3.0": {
-      "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
+      "sha512": "JaPNtL9lCuba6TCJZeEL+kgAV/NZ82a0/R77I2gB2gXiwPQ//buYZUKYtyStHQfoBW/ilyAPeYZHuhFI1zSgSw==",
       "type": "package",
       "path": "system.globalization.extensions/4.3.0",
       "files": [
@@ -6092,7 +6092,7 @@
       ]
     },
     "System.Reflection.Emit/4.3.0": {
-      "sha512": "228FG0jLcIwTVJyz8CLFKueVqQK36ANazUManGaJHkO0icjiIypKW7YLWLIWahyIkdh5M7mV2dJepllLyA1SKg==",
+      "sha512": "7J8Ea7cjN4ox05efo6frteybOfDe6y2dEc5kdSqFKQvL+igaxSAz9OisWt4riodITEWuDDJl3zy9Cn9eWqmWUA==",
       "type": "package",
       "path": "system.reflection.emit/4.3.0",
       "files": [
@@ -7901,12 +7901,11 @@
       ]
     },
     "System.Xml.XPath.XmlDocument/4.0.1": {
-      "sha512": "Zm2BdeanuncYs3NhCj4c9e1x3EXFzFBVv2wPEc/Dj4ZbI9R8ecLSR5frAsx4zJCPBtKQreQ7Q/KxJEohJZbfzA==",
+      "sha512": "3qJokIteWA8+wtLcQP3iQapsQc8yiapmO3a+eUCp2qmu0IIyQB8c6/i8HpRadvkiaJvWJorkUm1fgxn8qSWp4g==",
       "type": "package",
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -8119,25 +8118,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mabonann\\.nuget\\packages\\": {},
+    "C:\\Users\\massi\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\MoneyCalculatorFunctions.Test.csproj",
+      "projectUniqueName": "E:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\MoneyCalculatorFunctions.Test.csproj",
       "projectName": "MoneyCalculatorFunctions.Test",
-      "projectPath": "C:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\MoneyCalculatorFunctions.Test.csproj",
-      "packagesPath": "C:\\Users\\mabonann\\.nuget\\packages\\",
-      "outputPath": "C:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\obj\\",
+      "projectPath": "E:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\MoneyCalculatorFunctions.Test.csproj",
+      "packagesPath": "C:\\Users\\massi\\.nuget\\packages\\",
+      "outputPath": "E:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mabonann\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\massi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -8151,8 +8153,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions\\MoneyCalculatorFunctions.csproj": {
-              "projectPath": "C:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions\\MoneyCalculatorFunctions.csproj"
+            "E:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions\\MoneyCalculatorFunctions.csproj": {
+              "projectPath": "E:\\Sviluppo\\Mastering-Azure-Serverless-Computing\\Chapter06\\TestingAzureFunctions\\MoneyCalculatorFunctions\\MoneyCalculatorFunctions.csproj"
             }
           }
         }

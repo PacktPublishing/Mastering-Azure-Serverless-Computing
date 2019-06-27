@@ -31,6 +31,7 @@ namespace MoneyCalculatorFunctions.Test
         public async Task Run_RightParametersInQueryString_Calculate(decimal mortgageLoan,
             double annualInterest, uint numberOfPayments, decimal rate)
         {
+            #region ARRANGE
             var provider = CultureInfo.InvariantCulture;
 
             var request = new Mock<HttpRequest>();
@@ -50,13 +51,18 @@ namespace MoneyCalculatorFunctions.Test
             table
                 .Setup(t => t.Add(It.IsAny<ExecutionRow>()))
                 .Verifiable();
+            #endregion ARRANGE
 
+            #region ACT
             var actual = await target.Run(request.Object, table.Object, logger.Object);
+            #endregion ACT
 
+            #region ASSERT
             Assert.IsType<OkObjectResult>(actual);
             var objResponse = actual as OkObjectResult;
             Assert.Equal(objResponse.Value, rate);
-            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Once);
+            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Once); 
+            #endregion ASSERT
         }
 
         public static IEnumerable<object[]> WrongCalculationData =>
@@ -78,6 +84,7 @@ namespace MoneyCalculatorFunctions.Test
         public async Task Run_WrongParametersInQueryString_Calculate(string mortgageLoan,
             string annualInterest, string numberOfPayments)
         {
+            #region ARRANGE
             var provider = CultureInfo.InvariantCulture;
 
             var request = new Mock<HttpRequest>();
@@ -94,12 +101,17 @@ namespace MoneyCalculatorFunctions.Test
 
             var logger = new Mock<ILogger>();
             var table = new Mock<ICollector<ExecutionRow>>();
+            #endregion ARRANGE
 
+            #region ACT
             var actual = await target.Run(request.Object, table.Object, logger.Object);
+            #endregion ACT
 
+            #region ASSERT
             Assert.IsType<BadRequestObjectResult>(actual);
-            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Never);
-        }
+            table.Verify(t => t.Add(It.IsAny<ExecutionRow>()), Times.Never); 
+            #endregion ASSERT
+        } 
 
 
         #endregion [ Run ]
