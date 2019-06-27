@@ -29,6 +29,7 @@
     <Content Include="Deploy-AzureResourceGroup.ps1" />
     <Content Include="LogicApp.json" />
     <Content Include="LogicApp.parameters.json" />
+    <None Include="Payloads\VacationRequest - Schema.json" />
     <None Include="Payloads\VacationRequest.json" />
     <None Include="Payloads\VacationRequestRow.json" />
   </ItemGroup>

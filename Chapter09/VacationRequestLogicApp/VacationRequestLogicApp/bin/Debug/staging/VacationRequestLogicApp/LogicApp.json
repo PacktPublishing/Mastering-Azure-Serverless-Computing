@@ -97,151 +97,145 @@
                   }
                 },
                 "method": "get",
-                "path": "/Tables/@{encodeURIComponent('EmpoloyeeTable')}/entities(PartitionKey='@{encodeURIComponent('Employee')}',RowKey='@{encodeURIComponent(triggerBody()?['EmployeeId'])}')"
+                "path": "/Tables/@{encodeURIComponent('EmpoloyeeTable')}/entities(PartitionKey='@{encodeURIComponent('Employee')}',RowKey='@{encodeURIComponent(triggerBody()['EmployeeId'])}')"
               },
               "runAfter": {}
             },
-            "Condition": {
-              "type": "If",
-              "expression": {
-                "and": [
-                  {
-                    "equals": [
-                      "@body('Get_entity')?['RowKey']",
-                      "@triggerBody()?['EmployeeId']"
-                    ]
-                  }
-                ]
-              },
-              "actions": {
-                "Get_older_request_for_the_date": {
-                  "type": "ApiConnection",
-                  "inputs": {
-                    "host": {
-                      "connection": {
-                        "name": "@parameters('$connections')['azuretables']['connectionId']"
-                      }
-                    },
-                    "method": "get",
-                    "path": "/Tables/@{encodeURIComponent('VacationRequestsTable')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['EmployeeId'])}',RowKey='@{encodeURIComponent(triggerBody()?['RequestDate'])}')"
-                  },
-                  "runAfter": {}
-                },
-                "Is_there_another_request_for_the_request_date": {
-                  "type": "If",
-                  "expression": {
-                    "and": [
-                      {
-                        "equals": [
-                          "@body('Get_older_request_for_the_date')?['RowKey']",
-                          "@triggerBody()?['RequestDate']"
-                        ]
-                      }
-                    ]
-                  },
-                  "actions": {
-                    "500_response_for_another_request": {
-                      "type": "Response",
-                      "kind": "http",
-                      "inputs": {
-                        "statusCode": 500,
-                        "body": "@concat('There is another request for ',triggerBody()?['EmployeeId'],' in the same date')"
-                      },
-                      "runAfter": {}
-                    }
-                  },
-                  "runAfter": {
-                    "Get_older_request_for_the_date": [
-                      "Succeeded"
-                    ]
-                  },
-                  "else": {
-                    "actions": {
-                      "Add_new_request_into_the_table": {
-                        "type": "ApiConnection",
-                        "inputs": {
-                          "host": {
-                            "connection": {
-                              "name": "@parameters('$connections')['azuretables']['connectionId']"
-                            }
-                          },
-                          "method": "post",
-                          "body": {
-                            "PartitionKey": "@{triggerBody()?['EmployeeId']}",
-                            "EmployeeId": "@{triggerBody()?['EmployeeId']}",
-                            "RowKey": "@{triggerBody()?['RequestDate']}",
-                            "RequestDate": "@{triggerBody()?['RequestDate']}",
-                            "VacationType": "@{triggerBody()?['VacationType']}"
-                          },
-                          "path": "/Tables/@{encodeURIComponent('VacationRequestsTable')}/entities"
-                        },
-                        "runAfter": {}
-                      },
-                      "Send_approval_email": {
-                        "type": "ApiConnectionWebhook",
-                        "inputs": {
-                          "host": {
-                            "connection": {
-                              "name": "@parameters('$connections')['office365']['connectionId']"
-                            }
-                          },
-                          "body": {
-                            "NotificationUrl": "@{listCallbackUrl()}",
-                            "Message": {
-                              "To": "",
-                              "Subject": "Approval Vacation Request for employee @{body('Get_entity')?['RowKey']}",
-                              "Options": "Approve, Reject",
-                              "Importance": "Normal"
-                            }
-                          },
-                          "path": "/approvalmail/$subscriptions"
-                        },
-                        "runAfter": {
-                          "Add_new_request_into_the_table": [
-                            "Succeeded"
-                          ]
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "runAfter": {
-                "Define_Manager_Data": [
-                  "Succeeded"
-                ]
-              },
-              "else": {
-                "actions": {
-                  "404_response_for_employee_not_exists": {
-                    "type": "Response",
-                    "kind": "http",
-                    "inputs": {
-                      "statusCode": 404,
-                      "body": "@concat('Employee ',triggerBody()?['EmployeeId'],' not exists')"
-                    },
-                    "runAfter": {}
-                  }
-                }
-              }
-            },
-            "Define_Manager_Data": {
+            "Initialize_manager_mail": {
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
                   {
-                    "name": "Manager",
-                    "type": "Object",
-                    "value": {
-                      "FirstName": "@{body('Get_entity')?['managerFirstName']}",
-                      "LastName": "@{body('Get_entity')?['managerLastName']}",
-                      "Mail": "@{body('Get_entity')?['managerEmail']}"
-                    }
+                    "name": "managerMail",
+                    "type": "String",
+                    "value": "@{body('Get_entity')?['managerEmail']}"
                   }
                 ]
               },
               "runAfter": {
+                "200_response": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "200_response": {
+              "type": "Response",
+              "kind": "Http",
+              "inputs": {
+                "statusCode": 200,
+                "body": "Your request is inserted in our system. Wait for the approve or reject."
+              },
+              "runAfter": {
                 "Get_entity": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Send_approval_email": {
+              "type": "ApiConnectionWebhook",
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['office365']['connectionId']"
+                  }
+                },
+                "body": {
+                  "NotificationUrl": "@{listCallbackUrl()}",
+                  "Message": {
+                    "To": "@{variables('managerMail')}",
+                    "Subject": "Approval Vacation Request for employee @{triggerBody()['EmployeeId']}",
+                    "Options": "Approve, Reject",
+                    "Importance": "Normal"
+                  }
+                },
+                "path": "/approvalmail/$subscriptions"
+              },
+              "runAfter": {
+                "Initialize_manager_mail": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_the_manager_response": {
+              "type": "Switch",
+              "expression": "@body('Send_approval_email')?['SelectedOption']",
+              "cases": {
+                "Approve": {
+                  "case": "Approve",
+                  "actions": {
+                    "Add_new_request_into_the_table": {
+                      "type": "ApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connection": {
+                            "name": "@parameters('$connections')['azuretables']['connectionId']"
+                          }
+                        },
+                        "method": "post",
+                        "body": {
+                          "EmployeeId": "@{triggerBody()['EmployeeId']}",
+                          "PartitionKey": "@{triggerBody()['EmployeeId']}",
+                          "RequestDate": "@{triggerBody()['RequestDate']}",
+                          "RowKey": "@{triggerBody()['RequestDate']}",
+                          "VacationType": "@{triggerBody()['VacationType']}"
+                        },
+                        "path": "/Tables/@{encodeURIComponent('VacationRequestsTable')}/entities"
+                      },
+                      "runAfter": {}
+                    },
+                    "Send_an_email": {
+                      "type": "ApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connection": {
+                            "name": "@parameters('$connections')['office365']['connectionId']"
+                          }
+                        },
+                        "method": "post",
+                        "body": {
+                          "To": "@{body('Get_entity')?['email']}",
+                          "Subject": "Vacation request approved!",
+                          "Body": "Your request for @{triggerBody()['RequestDate']} is approved!"
+                        },
+                        "path": "/Mail"
+                      },
+                      "runAfter": {
+                        "Add_new_request_into_the_table": [
+                          "Succeeded"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Reject": {
+                  "case": "Reject",
+                  "actions": {
+                    "Send_an_email_2": {
+                      "type": "ApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connection": {
+                            "name": "@parameters('$connections')['office365']['connectionId']"
+                          }
+                        },
+                        "method": "post",
+                        "body": {
+                          "To": "@{body('Get_entity')?['email']}",
+                          "Subject": "Vacation request rejected!",
+                          "Body": "Your request for @{triggerBody()['RequestDate']} is rejected!"
+                        },
+                        "path": "/Mail"
+                      },
+                      "runAfter": {}
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "runAfter": {
+                "Send_approval_email": [
                   "Succeeded"
                 ]
               }
@@ -259,18 +253,48 @@
               "kind": "Http",
               "inputs": {
                 "schema": {
-                  "type": "object",
+                  "$id": "http://example.com/root.json",
+                  "$schema": "http://json-schema.org/draft-07/schema#",
+                  "definitions": {},
                   "properties": {
                     "EmployeeId": {
+                      "$id": "#/properties/EmployeeId",
+                      "default": "",
+                      "examples": [
+                        "111111"
+                      ],
+                      "pattern": "^(.*)$",
+                      "title": "EmployeeId",
                       "type": "string"
                     },
                     "RequestDate": {
+                      "$id": "#/properties/RequestDate",
+                      "default": "",
+                      "examples": [
+                        "2019-06-06"
+                      ],
+                      "pattern": "^(.*)$",
+                      "title": "RequestDate",
                       "type": "string"
                     },
                     "VacationType": {
+                      "$id": "#/properties/VacationType",
+                      "default": "",
+                      "examples": [
+                        "Illness"
+                      ],
+                      "pattern": "^(.*)$",
+                      "title": "VacationType",
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": [
+                    "EmployeeId",
+                    "RequestDate",
+                    "VacationType"
+                  ],
+                  "title": "The Root Schema",
+                  "type": "object"
                 }
               }
             }
@@ -281,23 +305,23 @@
         "parameters": {
           "$connections": {
             "value": {
-              "azuretables": {
-                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'azuretables')]",
-                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azuretables_1_Connection_Name'))]",
-                "connectionName": "[parameters('azuretables_1_Connection_Name')]"
-              },
               "office365": {
                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'office365')]",
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('office365_1_Connection_Name'))]",
                 "connectionName": "[parameters('office365_1_Connection_Name')]"
+              },
+              "azuretables": {
+                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', parameters('logicAppLocation'), '/managedApis/', 'azuretables')]",
+                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('azuretables_1_Connection_Name'))]",
+                "connectionName": "[parameters('azuretables_1_Connection_Name')]"
               }
             }
           }
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/connections', parameters('azuretables_1_Connection_Name'))]",
-        "[resourceId('Microsoft.Web/connections', parameters('office365_1_Connection_Name'))]"
+        "[resourceId('Microsoft.Web/connections', parameters('office365_1_Connection_Name'))]",
+        "[resourceId('Microsoft.Web/connections', parameters('azuretables_1_Connection_Name'))]"
       ]
     },
     {

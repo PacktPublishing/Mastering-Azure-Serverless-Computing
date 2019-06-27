@@ -1,0 +1,45 @@
+﻿{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "Vacation Request",
+  "required": [
+    "EmployeeId",
+    "RequestDate",
+    "VacationType"
+  ],
+  "properties": {
+    "EmployeeId": {
+      "$id": "#/properties/EmployeeId",
+      "type": "string",
+      "title": "EmployeeId",
+      "default": "",
+      "examples": [
+        "111111"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "RequestDate": {
+      "$id": "#/properties/RequestDate",
+      "type": "string",
+      "title": "Requestdate",
+      "default": "",
+      "examples": [
+        "2019-06-06"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "VacationType": {
+      "$id": "#/properties/VacationType",
+      "type": "string",
+      "title": "VacationType",
+      "default": "",
+      "examples": [
+        "Illness",
+        "Vacation"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}
