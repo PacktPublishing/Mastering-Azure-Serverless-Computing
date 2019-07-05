@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sites_azurefunctiondevops_name": {
+      "value": "azdevopstestsite"
+    },
+    "serverfarms_WestEuropePlan_name": {
+      "value": "azdevopstestplan"
+    },
+    "components_azurefunctiondevops_name": {
+      "value": "azdevopstest"
+    },
+    "storageAccounts_azurefunctiondevopsstore_name": {
+      "value": "azdevopsteststore"
+    },
+    "actionGroups_Application%20Insights%20Smart%20Detection_name": {
+      "value": "azdevopstestai"
+    }
+  }
+}
