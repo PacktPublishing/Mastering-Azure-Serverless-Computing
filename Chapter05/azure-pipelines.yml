@@ -1,0 +1,77 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+variables:
+  ARMProject: 'AzureFunction.Resources/AzureFunction.Resources.csproj'
+  CodeProject: 'AzureFunction.Code/AzureFunction.Code.csproj'
+  ARMArtifactName: 'resources'
+  CodeArtifactName: 'code'
+
+trigger: none
+
+jobs:
+- job:
+  pool:
+    vmImage: 'vs2017-win2016'
+  displayName: 'Build $(ARMProject)'
+  steps:
+    - task: NuGetToolInstaller@1
+      displayName: 'Use NuGet 5.0.0'
+      inputs:
+        versionSpec: 5.0.0
+
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: $(ARMProject) 
+      
+    - task: VSBuild@1
+      displayName: 'Build solution'
+      inputs:
+        solution: '$(ARMProject)'
+        msbuildArgs: 
+        platform: '$(BuildPlatform)'
+        configuration: '$(BuildConfiguration)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+        PathtoPublish: $(build.artifactstagingdirectory)
+        ArtifactName: $(ARMArtifactName)
+            
+- job: Build_AzureFunctionCode
+  pool:
+    vmImage: 'vs2017-win2016'
+  displayName: 'Build $(CodeProject)'
+  steps:
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore packages
+    inputs:
+      command: 'restore'
+      projects: $(CodeProject)
+      feedsToUse: 'select'
+
+  - task: DotNetCoreCLI@2
+    displayName: Build AzureFunction.Code project
+    inputs:
+      command: 'build'
+      projects: $(CodeProject)
+
+  - task: DotNetCoreCLI@2
+    displayName: Publish build files
+    inputs:
+      command: publish
+      arguments: '--configuration Release'
+      projects: $(CodeProject)
+      publishWebProjects: false
+      modifyOutputPath: true
+      zipAfterPublish: false
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: $(CodeArtifactName)
