@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHandlerFunction", "EventHandlerFunction\EventHandlerFunction.csproj", "{1E42D032-73A3-4650-BEC0-68BE3AC89EAB}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ResourceGroupTemplate", "ResourceGroupTemplate\ResourceGroupTemplate.deployproj", "{AA0D100A-547F-4976-B802-85A0F4DFF01E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E42D032-73A3-4650-BEC0-68BE3AC89EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E42D032-73A3-4650-BEC0-68BE3AC89EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E42D032-73A3-4650-BEC0-68BE3AC89EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E42D032-73A3-4650-BEC0-68BE3AC89EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA0D100A-547F-4976-B802-85A0F4DFF01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA0D100A-547F-4976-B802-85A0F4DFF01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA0D100A-547F-4976-B802-85A0F4DFF01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA0D100A-547F-4976-B802-85A0F4DFF01E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D3C89C1-8768-4854-B327-348A0C7512F9}
+	EndGlobalSection
+EndGlobal

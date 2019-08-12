@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sites_eventhandlerfuncapp_name": {
+      "value": "eventgriddemofuncapp"
+    },
+    "components_eventhandlerfuncapp_name": {
+      "value": "eventgriddemoappinsight"
+    },
+    "storageAccounts_eventsourcestorage_name": {
+      "value": "eventgriddemostore"
+    },
+    "storageAccounts_eventhandlerfuncappstore_name": {
+      "value": "eventgriddemocodestore"
+    },
+    "serverfarms_WestEuropePlan_externalid": {
+      "value": "eventgriddemoplan"
+    }
+  }
+}
