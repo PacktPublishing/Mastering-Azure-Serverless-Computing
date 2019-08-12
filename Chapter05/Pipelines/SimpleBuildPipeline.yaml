@@ -1,0 +1,68 @@
+variables:
+  ARMProject: 'AzureFunction.Resources/AzureFunction.Resources.csproj'
+  CodeProject: 'AzureFunction.Code/AzureFunction.Code.csproj'
+
+trigger: 
+- master
+
+jobs:
+- job: Build_AzureFunctionCode
+  displayName: 'Build code project'
+  pool:
+    name: Hosted VS2017
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore packages'
+    inputs:
+      command: restore
+      projects: '$(CodeProject)'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build project'
+    inputs:
+      projects: '$(CodeProject)'
+      arguments: '--output $(Agent.TempDirectory)\Code\ --configuration Release'
+    condition: succeededOrFailed()
+
+  - task: ArchiveFiles@2
+    displayName: 'Archive files'
+    inputs:
+      rootFolderOrFile: '$(Agent.TempDirectory)\Code'
+      includeRootFolder: false
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Code/$(Build.BuildId).zip'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Code'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/Code'
+      ArtifactName: Code
+
+- job: Build_AzureFunctionResources
+  displayName: 'Build ARM project'
+  pool:
+    name: Hosted VS2017
+    demands:
+    - msbuild
+    - visualstudio
+  steps:
+  - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet Tool'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(ARMProject)'
+
+  - task: VSBuild@1
+    displayName: 'Build ARM project'
+    inputs:
+      solution: '$(ARMProject)'
+      msbuildArgs: ' /p:OutputPath="$(build.artifactstagingdirectory)\ARM"'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: ARM'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)\ARM'
+      ArtifactName: ARM

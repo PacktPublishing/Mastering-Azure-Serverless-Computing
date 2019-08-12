@@ -11,16 +11,20 @@ using System.Reflection;
 
 namespace AzureFunction.Code
 {
-    public class Function1
+    public static class GetVersionFunction
     {
+        private static string Version = "1.1.0.0";
+        
         [FunctionName("GetVersion")]
-        public IActionResult Run(
+        public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
-            var version = GetType().Assembly.GetName().Version.ToString();
-            return (ActionResult)new OkObjectResult($"Version {version}");
+            return (ActionResult)new OkObjectResult($"Your awesome function version {Version}");
         }
     }
 }
+
+
+

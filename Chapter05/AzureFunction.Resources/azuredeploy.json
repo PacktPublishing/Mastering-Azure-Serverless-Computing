@@ -23,7 +23,8 @@
       "type": "String"
     }
   },
-  "variables": {},
+  "variables": {
+    },
   "resources": [
     {
       "type": "microsoft.insights/actionGroups",
@@ -147,6 +148,26 @@
           }
         ],
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_WestEuropePlan_name'))]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "azureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccounts_azurefunctiondevopsstore_name'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_azurefunctiondevopsstore_name')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+            },
+            {
+              "name": "azureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccounts_azurefunctiondevopsstore_name'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_azurefunctiondevopsstore_name')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value)]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "WEBSITE_RUN_FROM_PACKAGE",
+              "value": "1"
+            }
+          ]
+        },
         "reserved": false,
         "scmSiteAlsoStopped": false,
         "clientAffinityEnabled": false,
@@ -184,11 +205,12 @@
         "linuxFxVersion": "",
         "requestTracingEnabled": false,
         "remoteDebuggingEnabled": false,
+        "remoteDebuggingVersion": "VS2017",
         "httpLoggingEnabled": false,
         "logsDirectorySizeLimit": 35,
         "detailedErrorLoggingEnabled": false,
         "publishingUsername": "$azurefunctiondevops",
-        "scmType": "None",
+        "scmType": "VSTSRM",
         "use32BitWorkerProcess": true,
         "webSocketsEnabled": false,
         "alwaysOn": false,

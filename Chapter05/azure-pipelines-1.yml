@@ -1,0 +1,67 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+variables:
+  CodeProject: 'AzureFunction.Code/AzureFunction.Code.csproj'
+  ARMProject: 'AzureFunction.Resources/AzureFunction.Resources.deployproj'
+  
+trigger: none
+
+jobs:
+- job: Build_CodeProject
+  pool:
+    vmImage: 'vs2017-win2016'
+  displayName: 'Build $(CodeProject)'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet restore'
+    inputs:
+      command: restore
+      projects: '$(CodeProject)'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build'
+    inputs:
+      projects: '$(CodeProject)'
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)/Code'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet test'
+    inputs:
+      command: test
+      projects: '$(CodeProject)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Code'
+    inputs:
+      PathtoPublish: ' $(build.artifactstagingdirectory)/Code'
+      ArtifactName: Code
+            
+- job: Build_ARM
+  pool:
+    vmImage: 'vs2017-win2016'
+  displayName: 'Build $(ARMProject)'
+  steps:
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet '
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(ARMProject)'
+
+  - task: VSBuild@1
+    displayName: 'Build solution $(ARMProject)'
+    inputs:
+      solution: '$(ARMProject)'
+      msbuildArgs: ' /p:OutputPath="$(build.artifactstagingdirectory)\ARM"'
+      platform: '$(BuildPlatform)'
+      configuration: '$(BuildConfiguration)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: ARM'
+    inputs:
+      PathtoPublish: ' $(build.artifactstagingdirectory)/ARM'
+      ArtifactName: ARM
