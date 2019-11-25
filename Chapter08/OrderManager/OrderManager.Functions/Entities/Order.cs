@@ -35,8 +35,13 @@ namespace OrderManager.Core.Entities
         public override IDictionary<string, EntityProperty> WriteEntity(OperationContext operationContext)
         {
             var results = base.WriteEntity(operationContext);
+
             var stateProperty = new EntityProperty(this.State.ToString());
             results.Add(nameof(State), stateProperty);
+
+            var amountProperty = new EntityProperty(this.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            results.Add(nameof(Amount), amountProperty);
+
             return results;
         }
 
@@ -48,6 +53,12 @@ namespace OrderManager.Core.Entities
                 var property = properties[nameof(State)];
                 this.State = (OrderStatus)Enum.Parse(typeof(OrderStatus), property.StringValue);
                 properties.Remove(nameof(State));
+            }
+            if (properties.ContainsKey(nameof(Amount)))
+            {
+                var property = properties[nameof(Amount)];
+                this.Amount = decimal.Parse(property.StringValue, System.Globalization.CultureInfo.InvariantCulture);
+                properties.Remove(nameof(Amount));
             }
         }
     }

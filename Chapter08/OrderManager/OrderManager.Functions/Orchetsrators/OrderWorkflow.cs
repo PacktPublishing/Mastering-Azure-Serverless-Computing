@@ -28,7 +28,7 @@ namespace OrderManager.Functions.Orchetsrators
 
             if (addResult)
             {
-                DateTime orderDeadline = context.CurrentUtcDateTime.AddMinutes(1);
+                DateTime orderDeadline = GetOrderDeadLine(context);
 
                 var orderPaidEvent = context.WaitForExternalEvent(Events.OrderPaid);
                 var orderCancelledEvent = context.WaitForExternalEvent(Events.OrderCancelled);
@@ -63,8 +63,19 @@ namespace OrderManager.Functions.Orchetsrators
                     log.LogTrace($"Sendmail result : {sendMailResult}");
                 }
 
-
             }
+        }
+
+        private static DateTime GetOrderDeadLine(DurableOrchestrationContext context)
+        {
+            var orderExpireTimeoutConfig = Environment.GetEnvironmentVariable("OrderExpireTimeout");
+            int orderExpireTimeout;
+            if (!int.TryParse(orderExpireTimeoutConfig, out orderExpireTimeout))
+                orderExpireTimeout = 1;
+
+            var orderDeadline = context.CurrentUtcDateTime.ToLocalTime().AddMinutes(orderExpireTimeout);
+
+            return orderDeadline;
         }
     }
 }
