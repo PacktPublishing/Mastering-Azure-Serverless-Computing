@@ -4,7 +4,9 @@
     "fileLoggingMode": "always",
     "logLevel": {
       "Default": "Information",
-      "Function": "Warning"
+      "Function": "Trace",
+      "Host.Results": "Information",
+      "Host.Aggregator": "Error"
     }
   }
 }

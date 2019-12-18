@@ -21,7 +21,10 @@ namespace MonitoringAzureFunctions
             log.LogTrace($"Schedule Status Next: {myTimer.ScheduleStatus.Next}");
             log.LogTrace($"Schedule Status LastUpdated: {myTimer.ScheduleStatus.LastUpdated}");
             if (IsErrorOccurs())
+            { 
                 log.LogWarning($"Something happened in your function!!!");
+                throw new Exception();
+            }
 
             log.LogMetric("MyCustomMetric", CalculateMyCustomMetric());
         }
@@ -39,3 +42,5 @@ namespace MonitoringAzureFunctions
         }
     }
 }
+
+
