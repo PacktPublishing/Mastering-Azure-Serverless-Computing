@@ -14,7 +14,7 @@ namespace Functions
 {
     public static class WeatherFunctions
     {
-
+        #region [ Custom Trigger ]
         [FunctionName(nameof(MilanWeatherCheck))]
         public static void MilanWeatherCheck(
            [WeatherTrigger("Milan,IT", 0.05)] WeatherPayload req,
@@ -23,7 +23,9 @@ namespace Functions
             var message = $"{req.CityName} [{req.CurrentTemperature}] at {req.Timestamp}";
             log.LogWarning(message);
         }
+        #endregion [ Custom Trigger ]
 
+        #region [ Custom Trigger and Binding ]
         [FunctionName(nameof(RomeWeatherCheck))]
         public static async Task RomeWeatherCheck(
             [WeatherTrigger("Rome,IT", 0.05)] WeatherPayload req,
@@ -45,7 +47,9 @@ namespace Functions
             log.LogWarning(message);
             await tweetMessage.TweetAsync(message);
         }
+        #endregion [ Custom Trigger and Binding ]
 
+        #region [ Custom Binding ]
         //[FunctionName(nameof(PeriodicTweet))]
         //public static async Task PeriodicTweet(
         //    [TimerTrigger("0 */5 * * * *")] TimerInfo timer,
@@ -63,5 +67,6 @@ namespace Functions
         //{
         //    // .....
         //}
+        #endregion [ Custom Binding ]
     }
 }
