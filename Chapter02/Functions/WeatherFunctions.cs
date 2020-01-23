@@ -17,7 +17,7 @@ namespace Functions
 
         [FunctionName(nameof(MilanWeatherCheck))]
         public static void MilanWeatherCheck(
-           [WeatherTrigger("Milan,IT", 0.1)] WeatherPayload req,
+           [WeatherTrigger("Milan,IT", 0.05)] WeatherPayload req,
            ILogger log)
         {
             var message = $"{req.CityName} [{req.CurrentTemperature}] at {req.Timestamp}";
@@ -26,13 +26,24 @@ namespace Functions
 
         [FunctionName(nameof(RomeWeatherCheck))]
         public static async Task RomeWeatherCheck(
-            [WeatherTrigger("Rome,IT", 0.1)] WeatherPayload req,
+            [WeatherTrigger("Rome,IT", 0.05)] WeatherPayload req,
             [TwitterBinding] IAsyncCollector<string> tweetMessages,
             ILogger log)
         {
             var message = $"{req.CityName} [{req.CurrentTemperature}] at {req.Timestamp}";
             log.LogWarning(message);
             await tweetMessages.AddAsync(message);
+        }
+
+        [FunctionName(nameof(TurinWeatherCheck))]
+        public static async Task TurinWeatherCheck(
+            [WeatherTrigger("Turin,IT", 0.1)] WeatherPayload req,
+            [TwitterBinding] TwitterBinder tweetMessage,
+            ILogger log)
+        {
+            var message = $"{req.CityName} [{req.CurrentTemperature}] at {req.Timestamp}";
+            log.LogWarning(message);
+            await tweetMessage.TweetAsync(message);
         }
 
         //[FunctionName(nameof(PeriodicTweet))]

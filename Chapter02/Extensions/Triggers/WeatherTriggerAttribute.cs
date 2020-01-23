@@ -15,7 +15,7 @@ namespace Extensions.Triggers
             TemperatureThreshold = temperatureThreshold;
         }
 
-        [AppSetting(Default ="ApiKey")]
+        [AppSetting(Default = "Weather.ApiKey")]
         [AutoResolve]
         public string ApiKey { get; set; }
 

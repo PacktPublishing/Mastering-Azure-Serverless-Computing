@@ -8,7 +8,7 @@ namespace Extensions.Triggers
 
         public double CurrentTemperature { get; set; }
 
-        public double LastTemperature { get; set; }
+        public double? LastTemperature { get; set; }
 
         public DateTimeOffset Timestamp { get; internal set; }
     }

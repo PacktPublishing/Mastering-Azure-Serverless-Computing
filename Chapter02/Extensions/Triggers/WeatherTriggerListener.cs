@@ -34,7 +34,7 @@ namespace Extensions.Triggers
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            StopAsync(CancellationToken.None).Wait();
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -58,7 +58,7 @@ namespace Extensions.Triggers
         {
             this._weatherService.ApiKey = this._attribute.ApiKey;
             var cityData = new CityInfo();
-            double lastTemperature = 0;
+            double? lastTemperature = null;
 
             while (!token.IsCancellationRequested)
             {
@@ -71,8 +71,8 @@ namespace Extensions.Triggers
                     cityData = null;
                 }
 
-                if (cityData != null && 
-                    Math.Abs(cityData.Temperature - lastTemperature) > this._attribute.TemperatureThreshold)
+                if (!lastTemperature.HasValue ||
+                    (cityData != null && Math.Abs(cityData.Temperature - lastTemperature.Value) > this._attribute.TemperatureThreshold))
                 {
                     var weatherPayload = new WeatherPayload()
                     {
@@ -87,7 +87,7 @@ namespace Extensions.Triggers
                     lastTemperature = cityData.Temperature;
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(1), token);
+                await Task.Delay(TimeSpan.FromSeconds(30), token);
             }
         }
 

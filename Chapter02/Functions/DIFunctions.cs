@@ -16,7 +16,7 @@ namespace Functions
     {
         [FunctionName(nameof(InjectMyServiceWithBinding))]
         public static async Task<IActionResult> InjectMyServiceWithBinding(
-            [HttpTrigger(AuthorizationLevel.Function, "get",  Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             [DependencyInjection(typeof(IMyService))] IMyService myService,
             ILogger log)
         {
